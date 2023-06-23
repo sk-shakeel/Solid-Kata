@@ -3,10 +3,13 @@ package firehazard;
 import java.util.List;
 
 public class Executor {
-    private Operations grid;
-
-    public Executor(Operations grid){
-        this.grid=grid;
+    private Controller controller;
+    private Operator operator;
+    private LightsGrid lightsGrid;
+    public Executor(LightsGrid lightsGrid,Controller controller,Operator operator){
+        this.lightsGrid=lightsGrid;
+        this.controller=controller;
+        this.operator=operator;
     }
 
     public void executeInstructions(List<String> instructions) {
@@ -38,10 +41,10 @@ public class Executor {
         switch (action) {
             case "turn":
                 boolean state = parts[1].equals("on");
-                grid.turningOn(startX, startY, endX, endY, state);
+                controller.changeState(lightsGrid,startX, startY, endX, endY, state);
                 break;
             case "toggle":
-                grid.toggling(startX, startY, endX, endY);
+                operator.toggleState(lightsGrid,startX, startY, endX, endY);
                 break;
             default:
                 System.out.println("Invalid instruction: " + instruction);

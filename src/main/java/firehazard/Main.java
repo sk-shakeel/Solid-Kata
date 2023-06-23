@@ -9,8 +9,10 @@ public class Main {
 
     public static void main(String[] args) {
 
-        //followed dependency inversion principle here
-        Operations grid = new LightsGrid(GRID_SIZE);
+        LightsGrid lightsGrid = new LightsGrid(GRID_SIZE);
+        Operator lightOperator = new LightOperator();
+        Controller lightsController = new LightsController();
+        LightCounter counter=new LightCounter();
 
         List<String> instructions = new ArrayList<>();
         instructions.add("turn on 887,9 through 959,629");
@@ -23,10 +25,11 @@ public class Main {
         instructions.add("toggle 720,196 through 897,994");
         instructions.add("toggle 831,394 through 904,860");
 
-        Executor executor = new Executor(grid);
+        Executor executor = new Executor(lightsGrid,lightsController, lightOperator);
+
         executor.executeInstructions(instructions);
 
-        int litCount = grid.count();
+        int litCount = counter.count(lightsGrid);
         System.out.println("Number of lights lit: " + litCount);
     }
 }

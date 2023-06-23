@@ -1,25 +1,15 @@
 package firehazard;
 
-public class Light implements Switch{
+public class Light{
 
     private boolean state;
 
-    @Override
-    public void turnOn() {
-        state = true;
-    }
-
-    @Override
-    public void turnOff() {
-        state = false;
-    }
-
-    @Override
-    public void toggle() {
-        state = !state;
-    }
-
-    public boolean isOn() {
+    public boolean getState() {
         return state;
     }
+
+    public void setState(boolean state) {
+        this.state = state;
+    }
+
 }
