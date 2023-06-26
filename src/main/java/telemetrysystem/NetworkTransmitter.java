@@ -12,6 +12,7 @@ public class NetworkTransmitter implements Transmitter{
         this.telemetryClientCommunication = telemetryClientCommunication;
     }
 
+    @Override
     public void checkTransmission(TelemetryDiagnosticControls diagnosticControls) throws Exception {
         diagnosticControls.setDiagnosticInfo("");
 
@@ -31,8 +32,6 @@ public class NetworkTransmitter implements Transmitter{
         diagnosticControls.setDiagnosticInfo(telemetryClientCommunication.receive());
     }
 
-    @Override
-    public void checkTransmission() {
 
-    }
+
 }
